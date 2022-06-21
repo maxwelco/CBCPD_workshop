@@ -1,7 +1,7 @@
 name: "cbcpd_workshop"
-title: "Congresso brasileiro da Ciência das Plantas Daninhas"
+title: "O R na ciência das Plantas Daninhas"
 description: |
-  My Website
+  CBCPD
 output_dir: "_site"
 navbar:
   right:
