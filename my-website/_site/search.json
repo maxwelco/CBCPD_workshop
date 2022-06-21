@@ -1,0 +1,21 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2022-06-21T13:56:16-03:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Congresso brasileiro da Ciência das Plantas Daninhas",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2022-06-21T13:54:53-03:00"
+    }
+  ],
+  "collections": []
+}
