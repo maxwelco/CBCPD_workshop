@@ -1,9 +1,16 @@
 ---
-title: "About this blog"
+title: "Sobre"
 description: |
-  Some additional details about the blog
+  Maxwel Coura Oliveira é PhD pela University of Nebraska-Lincoln e instrutor certificado pelo Rstudio. Atualmente trabalha como pesquisador associado na University of Wisconsin-Madison.
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+<iframe width='1000px' height='1000px' src='https://maxweeds.rbind.io/' >
+</iframe>
+
+
+<iframe width='1000px' height='1000px' src='https://education.rstudio.com/trainers/people/oliveira+maxwel/' >
+</iframe>

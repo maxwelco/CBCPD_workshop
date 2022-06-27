@@ -90,24 +90,28 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>O R na ciência das Plantas Daninhas: CBCPD</title>
 
+  <meta property="description" itemprop="description" content="Este workshop tem como objetivo apresentar a vocês as análises de modelos mistos com ANOVA e dose resposta no R. Especificamente, estamos interessados em analisar experimentos aplicados na ciência da planta daninha."/>
 
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="O R na ciência das Plantas Daninhas: CBCPD"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Este workshop tem como objetivo apresentar a vocês as análises de modelos mistos com ANOVA e dose resposta no R. Especificamente, estamos interessados em analisar experimentos aplicados na ciência da planta daninha."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="O R na ciência das Plantas Daninhas"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="O R na ciência das Plantas Daninhas: CBCPD"/>
+  <meta property="twitter:description" content="Este workshop tem como objetivo apresentar a vocês as análises de modelos mistos com ANOVA e dose resposta no R. Especificamente, estamos interessados em analisar experimentos aplicados na ciência da planta daninha."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["CBCPD"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["CBCPD"]},{"type":"character","attributes":{},"value":["Este workshop tem como objetivo apresentar a vocês as análises de modelos mistos com ANOVA e dose resposta no R. Especificamente, estamos interessados em analisar experimentos aplicados na ciência da planta daninha.\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -458,265 +462,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2074,6 +1819,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <script type="text/javascript" src="https://www.cookieconsent.com/releases/3.1.0/cookie-consent.js"></script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+  'notice_banner_type':'simple',
+  'consent_type': 'express',
+  'palette': 'light',
+  'language': 'pt',
+  'website_name': 'cbcpd_workshop',
+  'cookies_policy_url': 'url',
+  'change_preferences_selector':'#CookiePreferences'
+  });});</script>
   <!--/radix_placeholder_site_in_header-->
 
 
@@ -2084,7 +1841,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"CBCPD","authors":[]}
+{"title":"CBCPD","description":"Este workshop tem como objetivo apresentar a vocês as análises de modelos mistos com ANOVA e dose resposta no R. Especificamente, estamos interessados em analisar experimentos aplicados na ciência da planta daninha.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2092,12 +1849,61 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo" href="https://www.openweedsci.org">
+<img src="images/logo.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">O R na ciência das Plantas Daninhas</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
+<a href="index.html">Inicio</a>
+<a href="about.html">Sobre</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Slides
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="slides/intro/intro.html">Introdução</a>
+<hr/>
+<a href="slides/anova/anova.html">ANOVA</a>
+<hr/>
+<a href="slides/dose_resposta/dose_resposta.html">Dose resposta</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Apostila
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="aulas/intro/intro.html">Introdução</a>
+<hr/>
+<a href="aulas/anova/anova.html">ANOVA</a>
+<hr/>
+<a href="aulas/dose_resposta/dose_resposta.html">Dose resposta</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Exercícios
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="exercises/intro/intro.html">Introdução</a>
+<hr/>
+<a href="exercises/anova/anova.html">ANOVA</a>
+<hr/>
+<a href="exercises/dose_resposta/dose_resposta.html">Dose resposta</a>
+</div>
+</div>
+<a href="code_conduct.html">Código de conduta</a>
+<a href="perguntas.html">P&amp;R</a>
+<a href="https://github.com/maxwelco/CBCPD_workshop">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2270,11 +2076,69 @@ reading what we have to say!</p>
 <h1>CBCPD</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p>Este workshop tem como objetivo apresentar a vocês as análises de
+modelos mistos com ANOVA e dose resposta no R. Especificamente, estamos
+interessados em analisar experimentos aplicados na ciência da planta
+daninha.</p></p>
 </div>
 
 
 <div class="d-article">
+<h1 id="workshop">Workshop</h1>
+<center>
+<img src="images/flyer_oliveira.png" width="800px"/>
+</center>
+<h1 id="cronograma">Cronograma</h1>
+<p>Dia 30/03/2021 das 14 às 17h via Zoom.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Horário</th>
+<th>Curso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>14:00 às 14:15</td>
+<td>Apresentação</td>
+</tr>
+<tr class="even">
+<td>14:15 às 14:30</td>
+<td>Introdução</td>
+</tr>
+<tr class="odd">
+<td>14:30 às 17:00</td>
+<td>ANOVA</td>
+</tr>
+</tbody>
+</table>
+<p>Dia 06/04/2021 das 14 às 17h via Zoom.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Horário</th>
+<th>Curso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>14:00 às 17:00</td>
+<td>Dose resposta</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Intervalos programados durante o período</li>
+</ul>
+<h1 id="atividade-preliminar">Atividade preliminar</h1>
+<ul>
+<li>Leia a apostila de <strong>Introdução</strong> e faça o exercício de
+<strong>Introdução</strong> antes do inicio do curso.</li>
+</ul>
+<h1 id="open-weed-science">Open Weed Science</h1>
+<p>Esse mini-curso faz parte do projeto Open Weed Science.</p>
+<iframe width="1000px" height="1000px" src="https://www.openweedsci.netlify.app/">
+</iframe>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
@@ -2288,7 +2152,12 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="updates-and-corrections">Corrections</h3>
+<p>If you see mistakes or want to suggest changes, please <a href="https://github.com/maxwelco/CBCPD_workshop/issues/new">create an issue</a> on the source repository.</p>
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/maxwelco/CBCPD_workshop">https://github.com/maxwelco/CBCPD_workshop</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->

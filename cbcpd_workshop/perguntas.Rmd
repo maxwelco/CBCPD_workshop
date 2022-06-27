@@ -1,0 +1,9 @@
+---
+title: "Perguntas e respostas (P&R)"
+description: |
+  As perguntas com mais detalhes devem ser feitas via google doc.
+---
+
+
+<iframe width='1000px' height='1000px' src='https://docs.google.com/document/d/19vzukLGg44NKqzmebhDes060ejVFUzSDAfb79ONdK24/edit?usp=sharing' >
+</iframe>

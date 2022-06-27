@@ -3,10 +3,62 @@ title: "O R na ciência das Plantas Daninhas"
 description: |
   CBCPD
 output_dir: "_site"
+creative_commons: CC BY
+repository_url: https://github.com/maxwelco/CBCPD_workshop
+cookie_consent:
+  style: simple
+  type: express
+  palette: light
+  lang: pt
+  cookies_policy: url
 navbar:
-  right: 
-    - text: "Home"
+  logo:
+    image: images/logo.png
+    href: https://www.openweedsci.org
+  search: false
+  right:
+    - text: "Inicio"
       href: index.html
-    - text: "About"
+    - text: "Sobre"
       href: about.html
+    - text: "Slides"
+      menu:
+        - text: "Introdução"
+          href: slides/intro/intro.html
+        - text: "---"
+        - text: "ANOVA"
+          href: slides/anova/anova.html
+        - text: "---"
+        - text: "Dose resposta"
+          href: slides/dose_resposta/dose_resposta.html
+    - text: "Apostila"
+      menu:
+        - text: "Introdução"
+          href: aulas/intro/intro.html
+        - text: "---"
+        - text: "ANOVA"
+          href: aulas/anova/anova.html
+        - text: "---"
+        - text: "Dose resposta"
+          href: aulas/dose_resposta/dose_resposta.html
+    - text: "Exercícios"
+      menu:
+        - text: "Introdução"
+          href: exercises/intro/intro.html
+        - text: "---"
+        - text: "ANOVA"
+          href: exercises/anova/anova.html
+        - text: "---"
+        - text: "Dose resposta"
+          href: exercises/dose_resposta/dose_resposta.html
+    - text: "Código de conduta"
+      href: code_conduct.html
+    - text: "P&R"
+      href: perguntas.html
+    - icon: fab fa-github
+      href: https://github.com/maxwelco/CBCPD_workshop
 output: distill::distill_article
+
+
+
+

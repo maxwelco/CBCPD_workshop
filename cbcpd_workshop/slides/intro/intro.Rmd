@@ -1,0 +1,158 @@
+---
+title: "Introdução ao R/Rstudio"
+subtitle: "Breve introdução sobre o programa R/Rstudio"
+author: 
+  - "Maxwel Coura Oliveira, PhD"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+```
+
+```{r include=FALSE}
+library(tidyverse)
+library(icons)
+library(countdown)
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#5D3FD3",
+  secondary_color = "#FF961C",
+  white_color = "#FAF9F6",
+  black_color = "#333333",
+  inverse_header_color = "#333333",
+  inverse_background_color = "#CCCCFF",
+  table_row_even_background_color = lighten_color("#CCCCFF", 0.8),
+)
+```
+
+
+
+class: inverse middle center
+
+# About me
+
+
+---
+
+class: middle, center
+
+## Maxwel Coura Oliveira
+
+<img style="border-radius: 50%;" src="images/foto.jpeg" width="150px"/>
+
+
+
+
+[`r icon_style(fontawesome("github"), style = "solid")` @maxwelco](https://github.com/maxwelco)  
+[`r icon_style(fontawesome("twitter"), style = "solid")` @maxwelco](https://twitter.com/maxwelco)  
+[`r icon_style(fontawesome("link"), style = "solid")` maxweeds.rbind.io](https://maxweeds.rbind.io)  
+[`r icon_style(fontawesome("envelope-square"), style = "solid")` maxwelco@gmail.com](mailto:maxwelco@gmail.com)
+
+???
+
+- I am on the social media. Please fee free to follow me
+
+- Describe my social media
+
+- My blog, github, twitter
+
+
+---
+
+
+## R e Rstudio
+
+<br><br>
+
+<center>
+<img src="https://community-cdn.rstudio.com/uploads/default/original/2X/9/95d95f5512a943c89520544e0a47d9c641b7333f.png" width="900px"/>
+</center>
+
+
+---
+
+# Ambiente Rstudio
+
+<center>
+<img src="https://d33wubrfki0l68.cloudfront.net/692f3658d35df168276cf46e3e083f908a5cc105/f7707/wp-content/uploads/2014/04/rstudio-windows.png" width="600px"/>
+</center>
+
+.footnote[Fonte: Rstudio]
+
+
+---
+
+# R markdown
+
+<center>
+<img src="images/rmarkdown.svg" width="700px"/>
+</center>
+
+.footnote[Fonte: RStudio Education]
+
+---
+
+# Documento Rmarkdown
+
+
+<center>
+<img src="https://miro.medium.com/max/2000/1*jL-whKGBhuUlU7Q2oevz9w.png" width="700px"/>
+</center>
+
+
+.footnote[Fonte: Medium]
+
+---
+
+
+# Dados
+
+- Como formatar dados
+
+```{r echo=FALSE}
+DT::datatable(
+  drc::germination,
+  fillContainer = FALSE, options = list(pageLength = 5)
+)
+```
+
+
+---
+
+name: goodbye
+class: right, middle, blue
+
+
+<img style="border-radius: 50%;" src="images/foto.jpeg" width="150px"/>
+
+# Thank you!
+
+#### You can find me at...
+
+[`r icon_style(fontawesome("github"), style = "solid")` @maxwelco](https://github.com/maxwelco)  
+[`r icon_style(fontawesome("twitter"), style = "solid")` @maxwelco](https://twitter.com/maxwelco)  
+[`r icon_style(fontawesome("link"), style = "solid")` maxweeds.rbind.io](https://maxweeds.rbind.io)  
+[`r icon_style(fontawesome("envelope-square"), style = "solid")` maxwelco@gmail.com](mailto:maxwelco@gmail.com)

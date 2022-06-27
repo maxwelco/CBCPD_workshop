@@ -1,0 +1,50 @@
+---
+title: "Código de conduta"
+description: |
+  Código de conduta para manter o ambiente saudável e maximizar o aprendizado.
+---
+
+##  Mini-curso[^1] 
+
+- Interativo
+
+- Palestras, muito a aprender fazendo
+
+- Use seu laptop
+
+## Diversidade e Inclusão
+
+**Propósito:** Os participantes de todas as origens e perspectivas diversas serão bem servidos por este mini-curso, que as necessidades de aprendizagem dos participantes sejam abordadas dentro e fora do mini-curso e que a diversidade que os alunos trazem para este workshop seja vista como benefício. É minha intenção apresentar materiais e atividades que respeitem a diversidade: identidade de gênero, sexualidade, deficiência, idade, status socioeconômico, etnia, raça, nacionalidade, religião e cultura. Deixe-me saber maneiras de melhorar o mini-curso.
+
+
+## Como obter ajuda
+
+- Durante o conteúdo do mini-curso e fórum de discussão do curso.
+    - Publique no documento de perguntas e respostas (P&R) do google em vez de enviar mensagens diretas.
+     - Use a formatação adequada: ao fazer perguntas que envolvam código, certifique-se de usar a formatação de código semelhante ao usado no R.
+     - Em aulas online, o participante pode usar o compartilhamento de tela para tirar dúvidas.
+     
+
+## Dicas para fazer perguntas
+
+- Primeiro, pesquise as respostas existentes na discussão. Se a pergunta já foi respondida, está feito! Se já foi perguntado, mas você não está satisfeito com a resposta, adicione ao tópico.
+
+- Apresente sua pergunta com o contexto dos conceitos do curso
+    - Bom contexto: "Tenho uma pergunta sobre filtragem"
+
+    - Contexto ruim: "Eu tenho uma pergunta sobre exercício 1 pergunta 4"
+
+- Seja preciso em sua descrição:
+    - Boa descrição: "Estou recebendo o seguinte erro e não tenho certeza de como resolvê-lo - "Error: `mapping` must be created by `aes()` Did you use %>% instead of +?"
+    -Descrição ruim: "R dando erros, me ajude! Aaaarrrrrgh!"
+
+- Você pode editar uma pergunta após postá-la.
+
+
+## Conduta[^2]
+
+Casos de comportamento abusivo, de assédio ou de outra forma inaceitável podem ser relatados por e-mail para maxwelco@gmail.com. Todas as reclamações serão analisadas e investigadas e resultarão em uma resposta considerada necessária e apropriada às circunstâncias. O instrutor é obrigado a manter a confidencialidade em relação ao relator de um incidente. Mais detalhes de políticas de aplicação específicas podem ser publicados separadamente
+
+[^1]: Esse código de conduta foi adaptado de Mine Çetinkaya-Rundel, projeto DSBOX]
+
+[^2]: Adaptado de Greg Wilson - Teaching Tech Together
