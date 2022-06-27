@@ -1,7 +1,7 @@
 ---
 title: "Sobre"
 description: |
-  Maxwel Coura Oliveira é PhD pela University of Nebraska-Lincoln e instrutor certificado pelo Rstudio. Atualmente trabalha como pesquisador associado na University of Wisconsin-Madison.
+  Maxwel Coura Oliveira é PhD pela University of Nebraska-Lincoln e instrutor certificado pelo Rstudio. Atualmente trabalha como Coordenador de Pesquisas e Treinamentos na TeeJet Technologies South America.
 ---
 
 ```{r setup, include=FALSE}

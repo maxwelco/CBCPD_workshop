@@ -1,0 +1,101 @@
+---
+title: "Exercícios introdução"
+date: ""
+output: 
+  html_document: 
+    number_sections: yes
+    toc: yes
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = 'center')
+```
+
+Esse exercício é adaptado de [Alison Presmanes Hill](https://alison.rbind.io/).
+
+# Faça uma figura de nome
+
+Abra um novo R script no RStudio indo para File -> New File -> R Script. Para esta primeira incursão em R, vou dar-lhe o código, então sente-se e relaxe e fique à vontade para copiar e colar meu código com alguns pequenos ajustes.
+
+Primeiro carregue os pacotes:
+
+
+```{r}
+library(babynames) # contem os dados
+library(dplyr) # para manipular os dados
+library(ggplot2) # para plotar os dados
+```
+
+
+A seguir, seguiremos as práticas recomendadas para inspecionar um conjunto de dados recém-lido. Aqui estão alguns comandos essenciais para obter uma visão geral de seu conjunto de dados recém-lido em R. 
+
+```{r}
+glimpse(babynames) #dplyr
+```
+
+```{r}
+head(babynames) # base R
+```
+
+
+```{r}
+tail(babynames) # same
+```
+
+Se você fez o que precede e produziu uma saída de aparência que faça sentido, está pronto para a próxima parte. Use o código abaixo para criar um conjunto de dados chamado maxwel.
+
+```{r}
+maxwel <- babynames %>%
+  filter(name == "Maxwel" | name == "Maxwell") %>% # variantes de nome
+  filter(sex == "M") # sexo F ou M
+```
+
+- A linha do código faz um novo conjunto de dados chamado maxwel que é uma cópia do conjunto de dados babynames - o `%>%` diz que estamos fazendo outras coisas nele mais tarde.
+
+- A segunda linha do código filtra nossos babynames para manter apenas as linhas em que o nome seja Maxwel ou Maxwell (leia | como “ou”).
+
+- A terceira linha do código aplica outro filtro para manter apenas aqueles em que o sexo é masculino.
+
+```{r}
+maxwel
+```
+```{r}
+glimpse(maxwel)
+```
+
+Novamente, se os códigos acima tiver sendo executados, prossiga para plotar os dados!
+
+```{r}
+plot <- ggplot(maxwel, aes(x = year, 
+                           y = prop,  
+                           group = name, 
+                           color = name)) + 
+  geom_line()  
+```
+
+
+```{r}
+plot
+```
+
+
+# Sua vez
+
+Edite meu código acima para criar um novo conjunto de dados. Escolha 2 nomes para comparar a popularidade de cada um (podem ser grafias diferentes do seu próprio nome, como eu fiz, mas você pode escolher quaisquer 2 nomes que estejam presentes no conjunto de dados). Faça o novo gráfico, alterando o nome do primeiro argumento maxwel em `ggplot()` para o nome do seu novo conjunto de dados.
+
+## Salvar e compartilhar
+
+Salve seu trabalho para que você possa compartilhar seu gráfico. Você não gostará da aparência de seu gráfico se passar o mouse sobre Export e salvá-lo. Em vez disso, use o comando `ggplot2` para salvar um gráfico com padrões razoáveis:
+
+```{r}
+help(ggsave)
+```
+
+```{r}
+ggsave("maxwel_oliveira.pdf", plot) # mude o nome da figura!
+```
+

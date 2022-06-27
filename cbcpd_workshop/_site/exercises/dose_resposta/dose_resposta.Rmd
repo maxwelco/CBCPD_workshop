@@ -1,0 +1,150 @@
+---
+title: "Exercícios dose-resposta"
+author: "Maxwel Coura Oliveira"
+date: "3/16/2021"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: yes
+    highlight: tango
+---
+
+No Rstudio, clique em `File` --> `New File` --> `R Markdown...`. Coloque o título de sua escolha e salve. Copie e cole os códigos abaixo e resolva os exercícios. Para facilitar o entendimento, copie e cole os blocos de código em diferentes **chunk**.
+
+Os dados desses exercícios são do mesmo estudo da apostila de dose resposta, porém a variável resposta é biomassa seca das plantas daninhas 21 dias após o tratamento. Parte dos resultados de [Inheritance of mesotrione resistance in an Amaranthus tuberculatus (var. rudis) population from Nebraska, USA](https://maxweeds.rbind.io/pdf/2018-inheritance-wat.pdf) de Oliveira et al. (2018).
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = 'center')
+```
+
+Importe os pacotes antes de começar o exercício:
+
+```python
+library(tidyverse)
+library(RCurl)
+library(drc)
+options(scipen=TRUE)
+```
+
+Execute o bloco de código abaixo para importar os dados.
+
+```python
+# Baixando via GitHub
+df_path <- url("https://raw.githubusercontent.com/maxwelco/workshop-esalq/main/data/dose_resposta.csv")
+
+# Lendo via read_csv
+dose <- read_csv(df_path)
+dose
+
+ggplot(dose, aes(x = rate, y = biomass, color = biotype)) + 
+  geom_point() 
+```
+
+
+# Sua vez
+
+Preencha os espaços para executar o modelo de dose resposta:
+
+```python
+model <- drm(________ ~ # variável resposta
+               rate, # variável explanatória
+             biotype, # fatores
+             fct = W1.3(), # curva usada (existem várias)
+             data = ________) # onde estão os dados
+
+model
+```
+
+
+# Sua vez
+
+Preencha os espaços para obter os parâmetros do modelo.
+
+```python
+broom.mixed::tidy(________)
+#tidy é uma função do pacote broom.mixed
+```
+
+Qual o valor do limite superior de R e S?
+
+
+
+# Sua vez
+
+Conserte o erro no código abaixo
+
+```python
+plott(model)
+```
+
+
+# Sua vez
+
+Qual dos códigos abaixo é ideal para a análise da dose resposta com biomassa? Em outras palavras, usamos `type = "absolute"` ou `type = "relative"`. Delete o `ED` que você **NÃO** escolheu. 
+
+
+```python
+ED(model, c(50, 90), interval = "delta",
+  type = "relative")
+
+#ou
+
+ED(model, c(50, 90), interval = "delta",
+   type = "absolute")
+```
+
+
+
+# Sua vez
+
+Complete o código abaixo com o tipo de `type`, como escolhido anteriormente. Assim como escolha os valores para as comparações para 90 entre os biótipos R e S. 
+
+```python
+EDcomp(model, c(___, ___), type = ____________)
+```
+
+
+
+
+# Sua vez
+
+Preencha os códigos abaixo para gerar o gráfico de dose resposta com biomassa de R e S.
+
+```python
+# gerar uma novo dataset
+nd <- expand.grid(rate=exp(seq(log(0.5), log(1680), length=1680)),
+                       biotype = c("S", "R"))
+
+# predict the model
+pm <- predict(model, newdata=nd, interval="confidence")
+
+# predict intervalo de confiança
+nd$p <- pm[,1] 
+nd$pmin <- pm[,2] 
+nd$pmax <- pm[,3] 
+
+# ajustando o 0
+dose$rate0 <- dose$rate
+dose$rate0[dose$rate==0] <- 0.5
+```
+
+
+
+```python
+ggplot(dose, aes(x = rate, y = ___________, 
+                 color = biotype,
+                 fill = biotype)) + 
+  geom_line(data=nd, aes(x=rate, y=p, 
+                         linetype = biotype), 
+            size=1.3) +
+  geom_ribbon(data=nd, aes(x=rate, y=p, ymin=pmin, ymax=pmax, 
+                           color = NULL),
+              alpha=0.2) +
+  theme_bw() +
+  coord_trans(x="log") +
+  scale_x_continuous(breaks=c(0, 1, 5, 12, 26, 53, 105, 
+                              210, 420, 840, 1680))
+```

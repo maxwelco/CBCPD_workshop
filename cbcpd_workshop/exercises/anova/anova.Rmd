@@ -1,0 +1,169 @@
+---
+title: "Exercícios ANOVA"
+author: "Maxwel Coura Oliveira"
+date: "3/16/2021"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+No Rstudio, clique em `File` --> `New File` --> `R Markdown...`. Coloque o título de sua escolha e salve. Copie e cole os códigos abaixo e resolva os exercícios. Para facilitar o entendimento, copie e cole os blocos de código em diferentes **chunk**.
+
+Os dados desses exercícios são do mesmo estudo da apostila de ANOVA, porém é um estudo de controle plantas daninhas em pós-emergência, dados coletados aos 21 dias após o tratamento. Parte dos resultados de [Confirmation and control of HPPD-inhibiting herbicide–resistant waterhemp (Amaranthus tuberculatus) in Nebraska](https://maxweeds.rbind.io/pdf/2017-confirmation-wat.pdf) de Oliveira et al. (2017). Nove herbicidas pré-emergentes aplicados em milho. Os estudos foi conduzido em campo em 2013 e 2014.
+
+Importe os pacotes antes de começar o exercício:
+
+```{r}
+library(tidyverse)
+library(RCurl)
+library(car)
+library(glmmTMB)
+library(emmeans)
+library(multcomp)
+```
+
+Execute o bloco de código abaixo para importar os dados.
+
+```{r}
+# Baixando via GitHub
+df_path <- url("https://raw.githubusercontent.com/maxwelco/workshop-esalq/main/data/controle.csv")
+
+# Importando via read_csv
+controle <- read_csv(df_path) %>% 
+  mutate_if(is_character, as_factor) %>% 
+  mutate_at(c("year", "rep"), as_factor)
+
+controle 
+```
+
+# Sua vez
+
+A figura abaixo não está executando corretamente, encontre o erro e execute corretamente os códigos abaixo:
+
+```python 
+ggplot(controle, aes(x = herbicide, y = control, color = year)) + 
+  geom.boxplot() + 
+  geom_point() +
+  coord_flip() +
+  ylim(0, 1)
+```
+
+
+# Sua vez
+
+Execute os códigos abaixo e interprete os resultados de homogeneidade da variância.
+
+```{r}
+leveneTest(control ~ year, data = controle)
+```
+
+
+
+
+# Sua vez
+
+Preencha os espaços para executar o modelo.
+
+```python
+modelo <- glmmTMB(control ~ # variável resposta
+                    herbicide + # variável fixa
+                    (1|rep/year), # efeitos randomizados
+                  family = _____________,
+                  data = controle)
+```
+
+# Sua vez
+
+Preencha os espaços para executar o modelo. Qual a interpretação do resultado da ANOVA?
+
+```python
+glmmTMB:::Anova.glmmTMB(____________)
+```
+
+# Sua vez
+
+ Preencha os espaços para executar o plot.
+
+```python
+emmip(modelo, ~ _________, type="response") 
+```
+
+# Sua vez
+
+O código abaixo tem um erro ao executar, encontre esse erro e execute o código.
+
+```python
+lsmeans <- emmmeans(modelo, # modelo
+                   ~ herbicide, # efeito fixo
+                   cont="pairwise", # tipo de comparação
+                   type="response", # transforma os dados de volta ao original
+                   alpha=0.05) # nivel 
+
+lsmeans
+```
+
+# Sua vez
+
+```python
+plot(lsmeans, # lsmeans
+     ~ herbicide, # efeito fixo
+     comparisons = TRUE, # quero comparar
+     type="response", # transforma os dados de volta ao original
+     alpha=0.05, # nivel
+     adjust="none") # ajuste, pode ser Tukey por exemplo - None = Fisher LSD
+```
+
+# Sua vez
+
+Preencha o espaço vazio para gerar as letras de comparação de médias entre os tratamentos.
+
+```python
+cld <- ______(lsmeans$emmeans, 
+           alpha=0.05, 
+           Letters=letters, 
+           adjust="none", 
+           reversed = TRUE) 
+cld
+```
+
+
+# Sua vez
+
+Encontre o erro ao executar a figura abaixo.
+
+```python
+ggplot(cldd, aes(x=reorder(herbicide, response), y= response * 100, color = herbicide)) + 
+  geom_point(size=4) + 
+  geom_linerange(aes(ymin = lower.CL*100, ymax = upper.CL*100), size=1.5) + 
+  ylim(0,100) +
+  labs(y="Waterhemp control (%)", x="") +
+  theme_bw() +
+  theme(axis.title = element_text(size=16),
+        axis.text = element_text(size=15),
+        legend.position = "none") +
+ coord_flip() 
+```
+
+# Sua vez
+
+Encontre o erro ao executar a figura abaixo.
+
+```python
+ggplot(cld, aes(x=herbicide, y=response * 100, fill=herbicide, label=.group)) + 
+  geom_bar(stat="identity") %>%  
+  ylim(0,110) +
+  labs(y="Waterhemp control (%)", x="Herbicides") +
+  geom_text(nudge_y = 7, nudge_x = 0, size = 8) + 
+  theme_bw() +  
+  theme(legend.position = "none")
+```
+
+
+

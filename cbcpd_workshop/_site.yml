@@ -12,9 +12,9 @@ cookie_consent:
   lang: pt
   cookies_policy: url
 navbar:
-  logo:
-    image: images/logo.png
-    href: https://www.openweedsci.org
+#  logo:
+#    image: 
+#    href: https://www.openweedsci.org
   search: false
   right:
     - text: "Inicio"

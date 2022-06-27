@@ -1,0 +1,134 @@
+---
+title: "Introdução"
+date: ""
+output: 
+  html_document: 
+    number_sections: yes
+    toc: yes
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = 'center')
+```
+
+Esse artigo é adaptado de [Alison Presmanes Hill](https://alison.rbind.io/).
+
+# Visão geral
+
+Este guia o guiará pelas etapas de instalação e uso do R, um ambiente de software gratuito e de código aberto para computação estatística e gráficos.
+
+
+## O que é o R?
+
+**R** é o nome da própria linguagem de programação, baseada no S da Bell Labs, que os usuários acessam por meio de um interpretador de linha de comando (`>`).
+
+## O que é **Rstudio**?
+
+O **RStudio** é uma interface de usuário poderosa e conveniente que permite acessar a linguagem de programação **R** junto com muitos outros recursos que aprimoram a funcionalidade (e a sanidade). Nosso objetivo final é fazer você olhar para uma tela como esta:
+
+```{r echo = FALSE}
+knitr::include_graphics("https://apreshill.github.io/data-vis-labs-2018/images/00_final-screenshot.png")
+```
+
+# Instale o **R**
+
+Instale o **R** do CRAN, `Comprehensive R Archive Network`. Escolha uma distribuição binária pré-compilada para o seu sistema operacional. Se precisar de mais ajuda, confira um dos vídeos a seguir (cortesia de Roger Peng da Johns Hopkins Biostatistics):
+
+  - [Instalando R em um Mac](https://www.youtube.com/watch?v=Icawuhf0Yqo)
+    
+  - [Instalando R no Windows](https://www.youtube.com/watch?v=mfGFv-iB724&feature=youtu.be)
+    
+Se precisar de mais ajuda, leia este guia passo a passo, incluindo capturas de tela.
+
+
+## Check-in
+
+Inicie o R. Você deve ver um console com um interpretador de linha de comando (>). Feche o R.
+
+
+
+# Instale o **Rstudio**
+
+Instale a edição gratuita de código aberto do **Rstudio**: http://www.rstudio.com/products/rstudio/download/.
+
+O **RStudio** fornece uma interface de usuário poderosa para R, chamada de ambiente de desenvolvimento integrado. O **Rstudio** inclui:
+
+  - um console (a interface de linha de comando padrão: `>`),
+    
+  - um editor de realce de sintaxe que oferece suporte à execução direta de código e ferramentas para plotagem, histórico, depuração e gerenciamento de espaço de trabalho.
+    
+    
+## Check-in
+
+Inicie o **RStudio**. Você deve obter uma janela semelhante à captura de tela que vê [aqui](https://rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png), mas a sua estará vazia. Observe o painel inferior esquerdo: esta é a mesma janela do console que você viu quando abriu **R**.
+
+- Coloque o cursor onde você vê `>` e digite `x <- 2 + 2`, pressione Enter ou Return, digite x e pressione Enter / Return novamente.
+
+- Se `[1] 4` for impresso na tela, você instalou com êxito **R** e **Rstudio** e pode avançar para a instalação de pacotes.
+
+
+
+# Instale os pacotes (`packages`)
+
+A versão de **R** que você acabou de baixar é considerada a base R, que fornece computação estatística e recursos gráficos bons, mas básicos. Para superpoderes analíticos e gráficos, você precisará instalar pacotes complementares, que são escritos pelo usuário, para estender/expandir seus recursos de R. Os pacotes podem residir em um de dois lugares:
+
+- Eles podem ser cuidadosamente selecionados pelo CRAN (que envolve um processo completo de submissão e revisão) e, portanto, são fáceis de instalar usando `install.packages("name_do_pacote", dependencies = TRUE)`.
+
+Como alternativa, eles podem estar disponíveis no GitHub. Para baixar esses pacotes, primeiro você precisa instalar o pacote devtools.
+
+```python
+install.packages ("devtools")
+library(devtools)
+install_github ("name_of_package")
+```
+
+Coloque o cursor no console novamente (onde você digitou pela última vez `x` e `[4]` impresso na tela). Você pode usar o primeiro método para instalar os seguintes pacotes diretamente do CRAN, todos os quais usaremos:
+
+- dplyr,
+
+- ggplot2,
+
+- babynames
+
+Você também pode fazer o download de todos de uma vez:
+
+```python
+install.packages(c("dplyr", "ggplot2", "babynames"),
+                 dependências = TRUE)
+```
+                 
+**Atenção**: Devemos apresentar formalmente o comando concatenar, c(), usado acima. Você usará isso com frequência - sempre que quiser combinar coisas em um vetor. 
+
+```{r}
+c ("olá", "meu", "nome", "é", "Maxwel")
+```
+
+
+```{r}
+c(1:3, 20, 50)
+```
+
+# Instalar pacotes para o mini-curso
+
+No **Rstudio**, abra um `R Script`. Em seguida, copie e cole os códigos abaixo para o `R Script`.
+
+```python
+install.packages("RCurl") 
+install.packages("tidyverse")
+install.packages("drc")
+install.packages("car")
+install.packages("glmmTMB")
+install.packages("emmeans")
+```
+
+No **Rstudio**, execute os códigos clicando em Run.
+
+Todos esses pacotes devem ser executados sem problema no **R** e/ou **Rstudio**, caso ocorra algum problema, atualize o **R** e/ou **Rstudio** para a versão mais nova.
+
+# Leitura complementar 
+
+- Wickham & Grolemund [R for Data Science](https://r4ds.had.co.nz/index.html)

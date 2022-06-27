@@ -1,17 +1,14 @@
 ---
 title: "Introdução ao R/Rstudio"
-subtitle: "Uma breve introdução sobre o programa R/Rstudio"
-author: 'Maxwel Coura Oliveira, PhD <br> Weed Scientist <br><br> <a href="https://github.com/maxwelco"><i class="fa fa-github fa-fw"></i>&nbsp; maxwelco</a><br> <a href="https://twitter.com/maxwelco"> <i class="fa fa-twitter fa-fw"></i>&nbsp; @maxwelco</a><br> <a href="https://maxweeds.rbind.io"><i class="fa fa-link fa-fw"></i>&nbsp; maxweeds.rbind.io</a><br> <a href="mailto:maxwelco@gmail.com"><i class="fa fa-paper-plane fa-fw"></i>&nbsp; maxwelco@gmail.com</a><br>'
+subtitle: "Breve introdução sobre o programa R/Rstudio"
+author: 
+  - "Maxwel Coura Oliveira, PhD"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
     nature:
-      slideNumberFormat: |
-        <div class="progress-bar-container">
-          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
-          </div>
-        </div>
+      slideNumberFormat: "%current%"
       highlightStyle: github
       highlightLines: true
       ratio: 16:9
@@ -31,340 +28,131 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r include=FALSE}
+library(tidyverse)
+library(icons)
+library(countdown)
+```
+
+
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
 style_duo_accent(
-  primary_color = "#ED1B2F",
+  primary_color = "#5D3FD3",
   secondary_color = "#FF961C",
-  text_color = "#333333",
-  background_color = "#FAF9F6",
-  inverse_header_color = "#FFFFFF"
+  white_color = "#FAF9F6",
+  black_color = "#333333",
+  inverse_header_color = "#333333",
+  inverse_background_color = "#CCCCFF",
+  table_row_even_background_color = lighten_color("#CCCCFF", 0.8),
 )
 ```
 
-## Typography
 
-Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`.
 
-[Link to another slide](#colors).
+class: inverse middle center
 
-### Lorem Ipsum
+# About me
 
-Dolor imperdiet nostra sapien scelerisque praesent curae metus facilisis dignissim tortor. 
-Lacinia neque mollis nascetur neque urna velit bibendum. 
-Himenaeos suspendisse leo varius mus risus sagittis aliquet venenatis duis nec.
-
-- Dolor cubilia nostra nunc sodales
-
-- Consectetur aliquet mauris blandit
-
-- Ipsum dis nec porttitor urna sed
-
----
-name: colors
-
-## Colors
-
-.left-column[
-Text color
-
-[Link Color](#3)
-
-**Bold Color**
-
-_Italic Color_
-
-`Inline Code`
-]
-
-.right-column[
-Lorem ipsum dolor sit amet, [consectetur adipiscing elit (link)](#3), 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Erat nam at lectus urna.
-Pellentesque elit ullamcorper **dignissim cras tincidunt (bold)** lobortis feugiat. 
-_Eros donec ac odio tempor_ orci dapibus ultrices. 
-Id porta nibh venenatis cras sed felis eget velit aliquet.
-Aliquam id diam maecenas ultricies mi.
-Enim sit amet 
-`code_color("inline")`
-venenatis urna cursus eget nunc scelerisque viverra.
-]
 
 ---
 
-# Big Topic or Inverse Slides `#`
+class: middle, center
 
-## Slide Headings `##`
+## Maxwel Coura Oliveira
 
-### Sub-slide Headings `###`
+<img style="border-radius: 50%;" src="images/foto.jpeg" width="150px"/>
 
-#### Bold Call-Out `####`
 
-This is a normal paragraph text. Only use header levels 1-4.
 
-##### Possible, but not recommended `#####`
 
-###### Definitely don't use h6 `######`
+[`r icon_style(fontawesome("github"), style = "solid")` @maxwelco](https://github.com/maxwelco)  
+[`r icon_style(fontawesome("twitter"), style = "solid")` @maxwelco](https://twitter.com/maxwelco)  
+[`r icon_style(fontawesome("link"), style = "solid")` maxweeds.rbind.io](https://maxweeds.rbind.io)  
+[`r icon_style(fontawesome("envelope-square"), style = "solid")` maxwelco@gmail.com](mailto:maxwelco@gmail.com)
 
----
+???
 
-# Left-Column Headings
+- I am on the social media. Please fee free to follow me
 
-.left-column[
-## First
+- Describe my social media
 
-## Second
+- My blog, github, twitter
 
-## Third
-]
-
-.right-column[
-Dolor quis aptent mus a dictum ultricies egestas.
-
-Amet egestas neque tempor fermentum proin massa!
-
-Dolor elementum fermentum pharetra lectus arcu pulvinar.
-]
-
----
-class: inverse center middle
-
-# Topic Changing Interstitial
-
---
-
-```
-class: inverse center middle
-```
-
----
-layout: true
-
-## Blocks
 
 ---
 
-### Blockquote
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+## R e Rstudio
 
----
+<br><br>
 
-### Code Blocks
+<center>
+<img src="https://community-cdn.rstudio.com/uploads/default/original/2X/9/95d95f5512a943c89520544e0a47d9c641b7333f.png" width="900px"/>
+</center>
 
-#### R Code
-
-```{r eval=FALSE}
-ggplot(gapminder) +
-  aes(x = gdpPercap, y = lifeExp, size = pop, color = country) +
-  geom_point() +
-  facet_wrap(~year)
-```
-
-#### JavaScript
-
-```js
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
 
 ---
 
-### More R Code
+# Ambiente Rstudio
 
-```{r eval=FALSE}
-dplyr::starwars %>% dplyr::slice_sample(n = 4)
-```
+<center>
+<img src="https://d33wubrfki0l68.cloudfront.net/692f3658d35df168276cf46e3e083f908a5cc105/f7707/wp-content/uploads/2014/04/rstudio-windows.png" width="600px"/>
+</center>
+
+.footnote[Fonte: Rstudio]
+
 
 ---
 
-```{r message=TRUE, eval=requireNamespace("cli", quietly = TRUE)}
-cli::cli_alert_success("It worked!")
-```
+# R markdown
 
---
+<center>
+<img src="images/rmarkdown.svg" width="700px"/>
+</center>
 
-```{r message=TRUE}
-message("Just a friendly message")
-```
+.footnote[Fonte: RStudio Education]
 
---
+---
 
-```{r warning=TRUE}
-warning("This could be bad...")
-```
+# Documento Rmarkdown
 
---
 
-```{r error=TRUE}
-stop("I hope you're sitting down for this")
+<center>
+<img src="https://miro.medium.com/max/2000/1*jL-whKGBhuUlU7Q2oevz9w.png" width="700px"/>
+</center>
+
+
+.footnote[Fonte: Medium]
+
+---
+
+
+# Dados
+
+- Como formatar dados
+
+```{r echo=FALSE}
+DT::datatable(
+  drc::germination,
+  fillContainer = FALSE, options = list(pageLength = 5)
+)
 ```
 
 
 ---
-layout: true
 
-## Tables
+name: goodbye
+class: right, middle, blue
 
----
-exclude: `r if (requireNamespace("tibble", quietly=TRUE)) "false" else "true"`
 
-```{r eval=requireNamespace("tibble", quietly=TRUE)}
-tibble::as_tibble(mtcars)
-```
+<img style="border-radius: 50%;" src="images/foto.jpeg" width="150px"/>
 
----
+# Thank you!
 
-```{r}
-knitr::kable(head(mtcars), format = 'html')
-```
+#### You can find me at...
 
----
-exclude: `r if (requireNamespace("DT", quietly=TRUE)) "false" else "true"`
-
-```{r eval=requireNamespace("DT", quietly=TRUE)}
-DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4))
-```
-
----
-layout: true
-
-## Lists
-
----
-
-.pull-left[
-#### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-]
-
-.pull-right[
-
-#### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-]
-
----
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
----
-
-### Nesting an ol in ul in an ol
-
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-  1. level 4 item (ol)
-  1. level 4 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-
----
-layout: true
-
-## Plots
-
----
-
-```{r plot-example, eval=requireNamespace("ggplot2", quietly=TRUE)}
-library(ggplot2)
-(g <- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point())
-```
-
----
-
-```{r plot-example-themed, eval=requireNamespace("ggplot2", quietly=TRUE)}
-g + xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) +
-  ggtitle("A Plot About Cars")
-```
-
----
-layout: false
-
-## Square image
-
-<center><img src="https://octodex.github.com/images/labtocat.png" height="400px" /></center>
-
-.footnote[GitHub Octocat]
-
----
-
-### Wide image
-
-![](https://guides.github.com/activities/hello-world/branching.png)
-
-.footnote[Wide images scale to 100% slide width]
-
----
-
-## Two images
-
-.pull-left[
-![](https://octodex.github.com/images/motherhubbertocat.png)
-]
-
-.pull-right[
-![](https://octodex.github.com/images/dinotocat.png)
-]
-
----
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
----
-class: center, middle
-
-# Thanks!
-
-Slides created via the R packages:
-
-[**xaringan**](https://github.com/yihui/xaringan)<br>
-[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
-
-The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+[`r icon_style(fontawesome("github"), style = "solid")` @maxwelco](https://github.com/maxwelco)  
+[`r icon_style(fontawesome("twitter"), style = "solid")` @maxwelco](https://twitter.com/maxwelco)  
+[`r icon_style(fontawesome("link"), style = "solid")` maxweeds.rbind.io](https://maxweeds.rbind.io)  
+[`r icon_style(fontawesome("envelope-square"), style = "solid")` maxwelco@gmail.com](mailto:maxwelco@gmail.com)
