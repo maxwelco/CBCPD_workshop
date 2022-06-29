@@ -34,12 +34,11 @@ Dia 25/06/2021 das 13 às 17h.
 
 | Horário        	| Curso         	|
 |----------------	|---------------	|
-| 14:00 às 14:15 	| Introdução  	  |
-| 14:15 às 14:30 	| Dose resposta	  |
-| 14:30 às 17:00 	|          	      |
+| 13:30 às 13:45 	| Introdução  	  |
+| 13:45 às 15:15 	| Dose resposta	  |
+| 15:15 às 15:30 	| Intervalo	      |
+| 15:30 às 17:00 	| Anova           |
 
-
-* Intervalos programados durante o período
 
 
 
@@ -52,5 +51,5 @@ Dia 25/06/2021 das 13 às 17h.
 
 Esse mini-curso faz parte do projeto Open Weed Science.
 
-<iframe width='1000px' height='1000px' src='https://www.openweedsci.netlify.app/' >
+<iframe width='1000px' height='1000px' src='https://openweedsci.netlify.app/' >
 </iframe>

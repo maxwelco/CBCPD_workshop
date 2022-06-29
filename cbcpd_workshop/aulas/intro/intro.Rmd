@@ -1,11 +1,14 @@
 ---
 title: "Introdução"
-date: ""
-output: 
-  html_document: 
-    number_sections: yes
-    toc: yes
-    highlight: tango
+#description: |
+#  A new article created using the Distill format.
+author:
+  - name: Maxwel Coura Oliveira
+#    url: https://example.com/norajones
+#    affiliation: Spacely Sprockets
+#    affiliation_url: https://example.com/spacelysprokets
+date: "`r Sys.Date()`"
+output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
@@ -132,3 +135,8 @@ Todos esses pacotes devem ser executados sem problema no **R** e/ou **Rstudio**,
 # Leitura complementar 
 
 - Wickham & Grolemund [R for Data Science](https://r4ds.had.co.nz/index.html)
+
+
+
+
+

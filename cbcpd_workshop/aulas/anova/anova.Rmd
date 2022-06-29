@@ -1,23 +1,28 @@
 ---
 title: "ANOVA"
-author: "Maxwel Coura Oliveira"
-date: ""
-output: 
-  html_document: 
-    number_sections: yes
-    toc: yes
-    highlight: tango
+#description: |
+#  A new article created using the Distill format.
+author:
+  - name: Maxwel Coura Oliveira
+#    url: https://example.com/norajones
+#    affiliation: Spacely Sprockets
+#    affiliation_url: https://example.com/spacelysprokets
+date: "`r Sys.Date()`"
+output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE,
-                      warning = FALSE)
+                      warning = FALSE,
+                      fig.align = 'center',
+                      fig.height = 4,
+                      fig.width = 6)
 ```
 
 # Importando os pacotes
 
-Vamos importar alguns pacotes até o final dessa aula, porém vamos trabalhar na base tidyverse. O tidyverse é um pacote que contém vários pacotes que auxiliam na manipulação de dados e construção de gráficos. Um exemplo que vamos usar é o pipe (%>%) do pacote magrittr, que faz parte do tidyverse. Assim como o pacote `dplyr` para manipulaccção de dados.
+Vamos importar alguns pacotes até o final dessa aula, porém vamos trabalhar na base tidyverse. O tidyverse é um pacote que contém vários outros pacotes que auxiliam na manipulação de dados e construção de gráficos. Um exemplo que vamos usar é o pipe (%>%) do pacote magrittr, que faz parte do tidyverse. Assim como o pacote `dplyr` (que está dentro do `tidyverse`) para manipulação de dados.
 
 ```{r}
 library(tidyverse)
@@ -25,7 +30,7 @@ library(tidyverse)
 
 # Dados 
 
-Parte dos resultados de [Confirmation and control of HPPD-inhibiting herbicide–resistant waterhemp (Amaranthus tuberculatus) in Nebraska](https://maxweeds.rbind.io/pdf/2017-confirmation-wat.pdf) de Oliveira et al. (2017). Nove herbicidas pré-emergentes aplicados em milho. Os estudos foi conduzido em campo em 2013 e 2014.
+Parte dos resultados de [Confirmation and control of HPPD-inhibiting herbicide–resistant waterhemp (Amaranthus tuberculatus) in Nebraska](https://maxweeds.rbind.io/pdf/2017-confirmation-wat.pdf) de Oliveira et al. (2017). Nove herbicidas pré-emergentes aplicados em milho. Os estudos foi conduzido em lavoura de milho em 2013 e 2014.
 
 Vamos usar o pacote `RCurl` para baixar o pacote via GitHub.
 
@@ -75,8 +80,8 @@ Mas antes um pequeno ajuste
 
 ```{r}
 residual3 <- residual2 %>%
-  mutate_if(is_character, as_factor) %>% 
-  mutate_at(c("year", "trt", "rep"), as_factor)
+  mutate_if(is_character, as_factor) %>% # passando para fator
+  mutate_at(c("year", "trt", "rep"), as_factor) # passando para fator
 
 residual3
 ```
@@ -291,5 +296,8 @@ kable(cld) %>%
 - Bates et al. [Fitting Linear Mixed-Effects Models Using lme4](https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf)
 
 - [Getting started with emmeans](https://aosmith.rbind.io/2019/03/25/getting-started-with-emmeans/)
+
+
+
 
 

@@ -49,6 +49,32 @@ style_duo_accent(
 )
 ```
 
+
+class: inverse middle center
+
+# About me
+
+
+---
+
+class: middle, center
+
+## Maxwel Coura Oliveira
+
+<img style="border-radius: 50%;" src="images/foto.jpeg" width="150px"/>
+
+
+
+
+[`r icon_style(fontawesome("github"), style = "solid")` @maxwelco](https://github.com/maxwelco)  
+[`r icon_style(fontawesome("twitter"), style = "solid")` @maxwelco](https://twitter.com/maxwelco)  
+[`r icon_style(fontawesome("link"), style = "solid")` maxweeds.rbind.io](https://maxweeds.rbind.io)  
+[`r icon_style(fontawesome("envelope-square"), style = "solid")` maxwelco@gmail.com](mailto:maxwelco@gmail.com)
+
+
+
+---
+
 # Curvas
 
 <center>
@@ -145,10 +171,12 @@ dose <- read_csv(df_path)
 ```
 
 
-```{r echo=FALSE}
-DT::datatable(
-  head(dose, 10),
-  fillContainer = FALSE, options = list(pageLength = 8)
+```{r echo = FALSE}
+library(reactablefmtr)
+reactable::reactable(
+  dose,
+  theme = espn(),
+  defaultPageSize = 8
 )
 ```
 
@@ -193,9 +221,11 @@ DT::datatable(
 
 - Qual modelo escolher? Existem vários
 
-<center>
-<img src="https://media.giphy.com/media/l1IYkN1bTv8jAAM48/giphy.gif" width="500px"/>
-</center>
+  - l4
+  - l3
+  - Weibull
+  - Gompertz
+  - Outros
 
 ---
 
@@ -289,9 +319,7 @@ plot(model, legendPos = c(3, 95))
 
 - Vá em exercícios --> Dose resposta e faça do número **4 ao 5**.
 
-<center>
-<img src="https://media.giphy.com/media/AEHPS520DUgJF8wnon/giphy.gif" width="400px"/>
-</center>
+
 
 
 ```{r echo =FALSE}
@@ -348,11 +376,27 @@ ggplot(dose, aes(x = rate, y = control,
 
 - Vá em exercícios --> Dose resposta e faça do número **6**.
 
-<center>
-<img src="https://media.giphy.com/media/55iWgRJB09fCy609aM/giphy.gif" width="400px"/>
-</center>
+
 
 
 ```{r echo =FALSE}
 countdown(minutes = 3, seconds = 00)
 ```
+
+
+---
+
+name: goodbye
+class: right, middle, blue
+
+
+<img style="border-radius: 50%;" src="images/foto.jpeg" width="150px"/>
+
+# Thank you!
+
+#### You can find me at...
+
+[`r icon_style(fontawesome("github"), style = "solid")` @maxwelco](https://github.com/maxwelco)  
+[`r icon_style(fontawesome("twitter"), style = "solid")` @maxwelco](https://twitter.com/maxwelco)  
+[`r icon_style(fontawesome("link"), style = "solid")` maxweeds.rbind.io](https://maxweeds.rbind.io)  
+[`r icon_style(fontawesome("envelope-square"), style = "solid")` maxwelco@gmail.com](mailto:maxwelco@gmail.com)

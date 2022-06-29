@@ -71,13 +71,6 @@ class: middle, center
 [`r icon_style(fontawesome("link"), style = "solid")` maxweeds.rbind.io](https://maxweeds.rbind.io)  
 [`r icon_style(fontawesome("envelope-square"), style = "solid")` maxwelco@gmail.com](mailto:maxwelco@gmail.com)
 
-???
-
-- I am on the social media. Please fee free to follow me
-
-- Describe my social media
-
-- My blog, github, twitter
 
 
 ---
@@ -94,7 +87,7 @@ class: middle, center
 
 ---
 
-# Ambiente Rstudio
+## Ambiente Rstudio
 
 <center>
 <img src="https://d33wubrfki0l68.cloudfront.net/692f3658d35df168276cf46e3e083f908a5cc105/f7707/wp-content/uploads/2014/04/rstudio-windows.png" width="600px"/>
@@ -102,10 +95,29 @@ class: middle, center
 
 .footnote[Fonte: Rstudio]
 
+---
+
+## Pacotes
+
+.pull-left[
+- Biblioteca de pacotes (packages)
+]
+
+
+.pull-right[
+<center>
+<img src="http://anhhoangduc.com/post/how-to-manage-libraries-in-r-efficiently/featured.jpg" width="450px"/>
+</center>
+]
+
+
+
+
+
 
 ---
 
-# R markdown
+## R markdown
 
 <center>
 <img src="images/rmarkdown.svg" width="700px"/>
@@ -115,7 +127,7 @@ class: middle, center
 
 ---
 
-# Documento Rmarkdown
+## Documento Rmarkdown
 
 
 <center>
@@ -128,14 +140,16 @@ class: middle, center
 ---
 
 
-# Dados
+## Dados
 
-- Como formatar dados
+- Sugestão de como formatar dados em uma planilha de excel
 
 ```{r echo=FALSE}
-DT::datatable(
-  drc::germination,
-  fillContainer = FALSE, options = list(pageLength = 5)
+library(reactablefmtr)
+reactable::reactable(
+  dados::clima,
+  theme = espn(),
+  defaultPageSize = 5
 )
 ```
 

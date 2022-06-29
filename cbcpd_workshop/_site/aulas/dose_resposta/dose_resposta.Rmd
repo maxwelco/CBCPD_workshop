@@ -1,19 +1,23 @@
 ---
-title: "Apostila dose-resposta"
-author: "Maxwel Coura Oliveira"
-date: "3/16/2021"
-output: 
-  html_document: 
-    number_sections: yes
-    toc: yes
-    highlight: tango
+title: "Dose resposta"
+#description: |
+#  A new article created using the Distill format.
+author:
+  - name: Maxwel Coura Oliveira
+#    url: https://example.com/norajones
+#    affiliation: Spacely Sprockets
+#    affiliation_url: https://example.com/spacelysprokets
+date: "`r Sys.Date()`"
+output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE,
                       warning = FALSE,
-                      fig.align = 'center')
+                      fig.align = 'center',
+                      fig.height = 4,
+                      fig.width = 6)
 ```
 
 # Dose resposta
@@ -30,18 +34,17 @@ Nesse caso a figura representa a resposta de doses de herbicidas em uma planta.
 
 # Importando os pacotes
 
-Vamos importar alguns pacotes até o final dessa aula, porém vamos trabalhar na base tidyverse. O tidyverse é um pacote que contém vários pacotes que auxiliam na manipulação de dados e construção de gráficos. Um exemplo que vamos usar é o pipe (%>%) do pacote magrittr, que faz parte do tidyverse. Assim como o pacote `dplyr` para manipulaccção de dados.
+Vamos importar alguns pacotes até o final dessa aula, porém vamos trabalhar na base tidyverse. O tidyverse é um pacote que contém vários pacotes que auxiliam na manipulação de dados e construção de gráficos. Um exemplo que vamos usar é o pipe (%>%) do pacote magrittr (ou pode-se usar o |> da base R), que faz parte do tidyverse. Assim como o pacote `dplyr` para manipulação de dados.
 
 ```{r}
 library(tidyverse)
-options(scipen=TRUE)
 ```
 
 # Dados
 
 Parte dos resultados de [Inheritance of mesotrione resistance in an Amaranthus tuberculatus (var. rudis) population from Nebraska, USA](https://maxweeds.rbind.io/pdf/2018-inheritance-wat.pdf) de Oliveira et al. (2018).
 
-Vamos usar o pacote `RCurl` para baixar o pacote via GitHub.
+Vamos usar o pacote `RCurl` para baixar os dados via GitHub.
 
 ```{r}
 library(RCurl)
@@ -73,7 +76,9 @@ Sempre visualize seus dados antes de proceder com a análise estatística. Aqui 
 ## Gráfico de pontos
 
 ```{r}
-ggplot(dose, aes(x = rate, y = control, color = biotype)) + 
+ggplot(dose, aes(x = rate, 
+                 y = control, 
+                 color = biotype)) + 
   geom_point() +
   ylim(0, 100)
 ```
@@ -81,7 +86,9 @@ ggplot(dose, aes(x = rate, y = control, color = biotype)) +
 ## Gráfico de dispersão
 
 ```{r}
-ggplot(dose, aes(x = factor(rate), y = control, color = biotype)) + 
+ggplot(dose, aes(x = factor(rate), 
+                 y = control, 
+                 color = biotype)) + 
   geom_boxplot()
 ```
 
@@ -108,16 +115,17 @@ No [DRC CRAN](https://cran.r-project.org/web/packages/drc/drc.pdf) você encontr
 A função `tidy` mostra os parâmetros da equação usada: l4 (4 parâmetros log-logistic).
 
 ```{r}
-broom.mixed::tidy(model)
-#tidy é uma função do pacote broom.mixed
+broom.mixed::tidy(model) |> #tidy é uma função do pacote broom.mixed
+  mutate_if(is_double, ~round(.,2)) |> # inseri essa função apenas para arredondar para duas casas decimais
+  reactable::reactable() # reactable é um pacote (e função) para formatar tabelas
 ```
 
 | **Parâmetro** | Significado                |
 |---------------|----------------------------|
 | b             | inclinação                 |
 | c             | limite inferior            |
-| d             | limite superior            |
-| e             | ponto de infecção da curva |
+| d             | limite superior             |
+| e             | ponto de inflecção da curva |
 
 Existe um problema com o resultado de um dos parâmetros!
 
@@ -135,6 +143,7 @@ O pacote `drc` possui a função `plot` que pode ser usada junto com o modelo us
 
 ```{r fig.width=6}
 plot(model)
+# escreva no console ?plot() e veja a quantidade de funções que você pode adicionar no gráfico
 ```
 
 Você pode adicionar vários atributos na função `plot` como cores, legendas, tamanho etc. Veja como no `CRAN do drc`. Mas a função `plot` é obseleta no sentido de reportar a figura. Porém, muito usada para rápida visualização de adequação do modelo usado.
@@ -154,7 +163,7 @@ ED(model, c(50, 90), interval = "delta",
    type = "absolute")
 ```
 
-Observe que os resultados mudam (e muito!) quando usamos `type = "absolute"`. Existem duas tipos aqui `type = "absolute"` ou `type = "relative"`. Tipo relativo é o padrão usado, então quando usamos a função `ED` sem o atributo type, o resultado será relativo. Relativo ao limite superior da curva. Por outro lado, quando especificamos `type = "absolute"`, o resultado será o valor absoluto especificado, como 50 ou 90% de controle (valores do eixo-y).
+Observe que os resultados mudam (e muito!) quando usamos `type = "absolute"`. Existem duas tipos aqui: `type = "absolute"` ou `type = "relative"`. Tipo relativo (relative) é o padrão usado, então quando usamos a função `ED` sem o atributo type, o resultado será relativo. O significado é relativo ao limite superior da curva. Por outro lado, quando especificamos `type = "absolute"`, o resultado será o valor absoluto especificado, como 50 ou 90% de controle (valores do eixo-y).
 
 Se quiser ver todos os atributos para a função `ED`, escreva no *console* **?ED().** Vai aparecer em *Help* todas as informações. Isso é válido para qualquer função no R.
 
@@ -180,6 +189,8 @@ Você também pode comparar os quatros parâmetros entre os biótipos. Veja como
 
 # Gráfico
 
+O pacote `drc` ainda não está totalmente alinahdo com o `ggplot`. Por isso temos que seguir os seguintes passos para depois fazer o gráfico.
+
 ```{r}
 # gerar uma novo dataset
 nd <- expand.grid(rate=exp(seq(log(0.5), log(1680), length=1680)),
@@ -198,17 +209,24 @@ dose$rate0 <- dose$rate
 dose$rate0[dose$rate==0] <- 0.5
 ```
 
+## Construindo o gráfico no `ggplot`.
+
 ```{r}
-ggplot(dose, aes(x = rate, y = control, 
+ggplot(dose, aes(x = rate, 
+                 y = control, 
                  color = biotype,
                  fill = biotype)) + 
-  geom_line(data=nd, aes(x=rate, y=p, 
+  geom_line(data=nd, aes(x=rate, 
+                         y=p, 
                          linetype = biotype), 
             size=1.3) +
-  geom_ribbon(data=nd, aes(x=rate, y=p, ymin=pmin, ymax=pmax, 
-                           color = NULL),
+  geom_ribbon(data=nd, aes(x=rate, 
+                           y=p, 
+                           ymin=pmin, 
+                           ymax=pmax,
+                         color = NULL),
               alpha=0.2) +
-  theme_bw() +
+  theme_bw() + # tema do gráfico (veja o pacote ggthemes para mais opções)
   coord_trans(x="log") +
   scale_x_continuous(breaks=c(0, 1, 5, 12, 26, 53, 105, 
                               210, 420, 840, 1680))
@@ -218,9 +236,11 @@ ggplot(dose, aes(x = rate, y = control,
 
 - Keshtkar et al. (2021) [Perspective: common errors in dose–response analysis and how to avoid them](https://onlinelibrary.wiley.com/doi/10.1002/ps.6268#.YA3QmAXaO1k.twitter)
 
+- Ritz et al. (2015) [Dose-Response Analysis Using R](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146021)
+
 -   Knezevic et al. (2007) [Utilizing R Software Package for Dose-Response Studies: The Concept and Data Analysis](https://www.jstor.org/stable/pdf/4495946.pdf)
 
-- Ritz et al. (2015) [Dose-Response Analysis Using R](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146021)
+
 
 
 

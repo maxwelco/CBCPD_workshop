@@ -1,26 +1,22 @@
 ---
-title: "Welcome to CBCPD"
-description: |
-  Welcome to our new blog, CBCPD. We hope you enjoy 
-  reading what we have to say!
-author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
-date: 06-21-2022
+title: "Congresso Brasileiro da Ciência da Planta daninha"
+#description: 
+#author:
+#  - name: Maxwel Coura Oliveira
+#    url: https://maxweeds.rbind.io/
+#    affiliation: TeeJet Technologies
+#    affiliation_url: https://www.teejet.com/
+#date: 06-21-2022
 output:
   distill::distill_article:
     self_contained: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating blogs with Distill at:
-# https://rstudio.github.io/distill/blog.html
-
-```
 
 
 
+
+
+
+<iframe width='1000px' height='1000px' src='https://cbcpd2022.com.br/' >
+</iframe>

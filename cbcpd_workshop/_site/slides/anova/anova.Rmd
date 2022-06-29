@@ -50,7 +50,37 @@ style_duo_accent(
 )
 ```
 
+class: inverse middle center
 
+# About me
+
+
+---
+
+class: middle, center
+
+## Maxwel Coura Oliveira
+
+<img style="border-radius: 50%;" src="images/foto.jpeg" width="150px"/>
+
+
+
+
+[`r icon_style(fontawesome("github"), style = "solid")` @maxwelco](https://github.com/maxwelco)  
+[`r icon_style(fontawesome("twitter"), style = "solid")` @maxwelco](https://twitter.com/maxwelco)  
+[`r icon_style(fontawesome("link"), style = "solid")` maxweeds.rbind.io](https://maxweeds.rbind.io)  
+[`r icon_style(fontawesome("envelope-square"), style = "solid")` maxwelco@gmail.com](mailto:maxwelco@gmail.com)
+
+???
+
+- I am on the social media. Please fee free to follow me
+
+- Describe my social media
+
+- My blog, github, twitter
+
+
+---
 
 background-image: url(https://upload.wikimedia.org/wikipedia/commons/a/aa/Youngronaldfisher2.JPG)
 background-position: right

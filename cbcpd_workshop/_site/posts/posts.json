@@ -1,19 +1,14 @@
 [
   {
     "path": "posts/welcome/",
-    "title": "Welcome to CBCPD",
-    "description": "Welcome to our new blog, CBCPD. We hope you enjoy \nreading what we have to say!",
-    "author": [
-      {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
-      }
-    ],
-    "date": "2022-06-21",
+    "title": "Congresso Brasileiro da Ciência da Planta daninha",
+    "description": {},
+    "author": [],
+    "date": "2022-06-29",
     "categories": [],
-    "contents": "\n\n\n\n",
+    "contents": "\n\n\n\n\n\n",
     "preview": {},
-    "last_modified": "2022-06-21T14:02:31-03:00",
+    "last_modified": "2022-06-29T10:50:35-03:00",
     "input_file": {}
   }
 ]

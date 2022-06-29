@@ -15,7 +15,7 @@ navbar:
 #  logo:
 #    image: 
 #    href: https://www.openweedsci.org
-  search: false
+  search: true
   right:
     - text: "Inicio"
       href: index.html
