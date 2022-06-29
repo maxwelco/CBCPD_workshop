@@ -1,11 +1,14 @@
 ---
-title: "Exercícios ANOVA"
-author: "Maxwel Coura Oliveira"
-date: "3/16/2021"
-output: 
-  html_document: 
-    number_sections: yes
-    toc: yes
+title: "Exercícios - ANOVA"
+#description: |
+#  A new article created using the Distill format.
+author:
+  - name: Maxwel Coura Oliveira
+ #   url: https://example.com/norajones
+ #   affiliation: Spacely Sprockets
+ #   affiliation_url: https://example.com/spacelysprokets
+date: "`r Sys.Date()`"
+output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
@@ -47,13 +50,15 @@ controle
 
 A figura abaixo não está executando corretamente, encontre o erro e execute corretamente os códigos abaixo:
 
-```python 
+```r
 ggplot(controle, aes(x = herbicide, y = control, color = year)) + 
   geom.boxplot() + 
   geom_point() +
   coord_flip() +
   ylim(0, 1)
 ```
+
+
 
 
 # Sua vez
@@ -71,7 +76,7 @@ leveneTest(control ~ year, data = controle)
 
 Preencha os espaços para executar o modelo.
 
-```python
+```r
 modelo <- glmmTMB(control ~ # variável resposta
                     herbicide + # variável fixa
                     (1|rep/year), # efeitos randomizados
@@ -83,7 +88,7 @@ modelo <- glmmTMB(control ~ # variável resposta
 
 Preencha os espaços para executar o modelo. Qual a interpretação do resultado da ANOVA?
 
-```python
+```r
 glmmTMB:::Anova.glmmTMB(____________)
 ```
 
@@ -91,7 +96,7 @@ glmmTMB:::Anova.glmmTMB(____________)
 
  Preencha os espaços para executar o plot.
 
-```python
+```r
 emmip(modelo, ~ _________, type="response") 
 ```
 
@@ -99,7 +104,7 @@ emmip(modelo, ~ _________, type="response")
 
 O código abaixo tem um erro ao executar, encontre esse erro e execute o código.
 
-```python
+```r
 lsmeans <- emmmeans(modelo, # modelo
                    ~ herbicide, # efeito fixo
                    cont="pairwise", # tipo de comparação
@@ -111,7 +116,7 @@ lsmeans
 
 # Sua vez
 
-```python
+```r
 plot(lsmeans, # lsmeans
      ~ herbicide, # efeito fixo
      comparisons = TRUE, # quero comparar
@@ -124,8 +129,8 @@ plot(lsmeans, # lsmeans
 
 Preencha o espaço vazio para gerar as letras de comparação de médias entre os tratamentos.
 
-```python
-cld <- ______(lsmeans$emmeans, 
+```r
+cld <- _________(lsmeans$emmeans, 
            alpha=0.05, 
            Letters=letters, 
            adjust="none", 
@@ -138,10 +143,14 @@ cld
 
 Encontre o erro ao executar a figura abaixo.
 
-```python
-ggplot(cldd, aes(x=reorder(herbicide, response), y= response * 100, color = herbicide)) + 
+```r
+ggplot(cldd, aes(x=reorder(herbicide, response), 
+                 y= response * 100, 
+                 color = herbicide)) + 
   geom_point(size=4) + 
-  geom_linerange(aes(ymin = lower.CL*100, ymax = upper.CL*100), size=1.5) + 
+  geom_linerange(aes(ymin = lower.CL*100, 
+                     ymax = upper.CL*100), 
+                 size=1.5) + 
   ylim(0,100) +
   labs(y="Waterhemp control (%)", x="") +
   theme_bw() +
@@ -155,15 +164,22 @@ ggplot(cldd, aes(x=reorder(herbicide, response), y= response * 100, color = herb
 
 Encontre o erro ao executar a figura abaixo.
 
-```python
-ggplot(cld, aes(x=herbicide, y=response * 100, fill=herbicide, label=.group)) + 
+```r
+ggplot(cld, aes(x=herbicide, 
+                y=response * 100, 
+                fill=herbicide, 
+                label=.group)) + 
   geom_bar(stat="identity") %>%  
   ylim(0,110) +
-  labs(y="Waterhemp control (%)", x="Herbicides") +
-  geom_text(nudge_y = 7, nudge_x = 0, size = 8) + 
+  labs(y="Waterhemp control (%)", 
+       x="Herbicides") +
+  geom_text(nudge_y = 7, 
+            nudge_x = 0, 
+            size = 8) + 
   theme_bw() +  
   theme(legend.position = "none")
 ```
+
 
 
 

@@ -1,12 +1,14 @@
 ---
-title: "Exercícios dose-resposta"
-author: "Maxwel Coura Oliveira"
-date: "3/16/2021"
-output: 
-  html_document: 
-    number_sections: yes
-    toc: yes
-    highlight: tango
+title: "Exercícios - Dose resposta"
+#description: |
+#  A new article created using the Distill format.
+author:
+  - name: Maxwel Coura Oliveira
+#    url: https://example.com/norajones
+#    affiliation: Spacely Sprockets
+#    affiliation_url: https://example.com/spacelysprokets
+date: "`r Sys.Date()`"
+output: distill::distill_article
 ---
 
 No Rstudio, clique em `File` --> `New File` --> `R Markdown...`. Coloque o título de sua escolha e salve. Copie e cole os códigos abaixo e resolva os exercícios. Para facilitar o entendimento, copie e cole os blocos de código em diferentes **chunk**.
@@ -22,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 Importe os pacotes antes de começar o exercício:
 
-```python
+```r
 library(tidyverse)
 library(RCurl)
 library(drc)
@@ -31,7 +33,7 @@ options(scipen=TRUE)
 
 Execute o bloco de código abaixo para importar os dados.
 
-```python
+```r
 # Baixando via GitHub
 df_path <- url("https://raw.githubusercontent.com/maxwelco/workshop-esalq/main/data/dose_resposta.csv")
 
@@ -48,7 +50,7 @@ ggplot(dose, aes(x = rate, y = biomass, color = biotype)) +
 
 Preencha os espaços para executar o modelo de dose resposta:
 
-```python
+```r
 model <- drm(________ ~ # variável resposta
                rate, # variável explanatória
              biotype, # fatores
@@ -63,7 +65,7 @@ model
 
 Preencha os espaços para obter os parâmetros do modelo.
 
-```python
+```r
 broom.mixed::tidy(________)
 #tidy é uma função do pacote broom.mixed
 ```
@@ -76,7 +78,7 @@ Qual o valor do limite superior de R e S?
 
 Conserte o erro no código abaixo
 
-```python
+```r
 plott(model)
 ```
 
@@ -86,7 +88,7 @@ plott(model)
 Qual dos códigos abaixo é ideal para a análise da dose resposta com biomassa? Em outras palavras, usamos `type = "absolute"` ou `type = "relative"`. Delete o `ED` que você **NÃO** escolheu. 
 
 
-```python
+```r
 ED(model, c(50, 90), interval = "delta",
   type = "relative")
 
@@ -113,7 +115,7 @@ EDcomp(model, c(___, ___), type = ____________)
 
 Preencha os códigos abaixo para gerar o gráfico de dose resposta com biomassa de R e S.
 
-```python
+```r
 # gerar uma novo dataset
 nd <- expand.grid(rate=exp(seq(log(0.5), log(1680), length=1680)),
                        biotype = c("S", "R"))
@@ -133,7 +135,7 @@ dose$rate0[dose$rate==0] <- 0.5
 
 
 
-```python
+```r
 ggplot(dose, aes(x = rate, y = ___________, 
                  color = biotype,
                  fill = biotype)) + 

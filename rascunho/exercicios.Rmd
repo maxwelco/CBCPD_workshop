@@ -1,0 +1,148 @@
+---
+title: "exercicios"
+author: "Maxwel Coura Oliveira"
+date: "3/30/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(RCurl)
+library(car)
+library(glmmTMB)
+library(emmeans)
+library(multcomp)
+```
+
+```{r}
+# Baixando via GitHub
+df_path <- url("https://raw.githubusercontent.com/maxwelco/workshop-esalq/main/data/controle.csv")
+
+# Importando via read_csv
+controle <- read_csv(df_path) %>% 
+  mutate_if(is_character, as_factor) %>% 
+  mutate_at(c("year", "rep"), as_factor)
+
+controle 
+```
+
+
+
+```{r}
+ggplot(controle, aes(x = herbicide, y = control, color = year)) + 
+  geom_boxplot() +
+  geom_point() +
+  coord_flip() +
+  ylim(0, 1)
+```
+
+
+
+```{r warning=FALSE}
+modelo <- glmmTMB(control ~ # variável resposta
+                    herbicide + # variável fixa
+                    (1|rep/year), # efeitos randomizados
+                  family = beta_family(link = "logit"),
+                  REML = FALSE,
+                  data = controle)
+
+modelo
+```
+
+
+
+
+```{r}
+lsmeans <- emmeans(modelo, # modelo
+                   ~ herbicide, # efeito fixo
+                   cont="pairwise", # tipo de comparação
+                   type="response", # transforma os dados de volta ao original
+                   alpha=0.05) # nivel 
+
+lsmeans
+```
+
+
+```{r}
+plot(lsmeans, # lsmeans
+     ~ herbicide, # efeito fixo
+     comparisons = TRUE, # quero comparar
+     type="response", # transforma os dados de volta ao original
+     alpha=0.05, # nivel
+     adjust="none") # a
+```
+
+
+
+```{r}
+help(cld)
+```
+
+
+
+```{r}
+library(multcomp)
+
+
+cld <- cld(lsmeans$emmeans, # o uso do $emmeans filtra o resultado de lsmeans para as medias
+           alpha = 0.05, # nivel
+           Letters = letters, # usar letras
+           adjust = "none", # sem ajuste de medias
+           reversed = TRUE) # a ---> z
+cld
+```
+
+```{r}
+help(ggplot)
+```
+
+```{r}
+library(ggthemes)
+```
+
+```{r}
+ggplot(cld, aes(x=reorder(herbicide, response), y= response * 100, color = herbicide)) + 
+  geom_point(size=4) + 
+  geom_linerange(aes(ymin = lower.CL*100, ymax = upper.CL*100), size=1.5) + 
+  ylim(0,100) +
+  labs(y="Waterhemp control (%)", x="") +
+  theme_bw() +
+  theme(axis.title = element_text(size=16),
+        axis.text = element_text(size=15),
+        legend.position = "none") +
+ coord_flip() +
+  theme_base() 
+
+ggsave("figura.png", dpi = 300, width = 6, height = 6)
+```
+
+
+
+```{r}
+ggplot(cld, aes(x= reorder(herbicide, response), y = response * 100, 
+                fill=herbicide, label=.group)) + 
+  geom_bar(stat="identity") + 
+    geom_linerange(aes(ymin = lower.CL*100, ymax = upper.CL*100), size=1.5) +
+  ylim(0,110) +
+  labs(y="Waterhemp control (%)", x="Herbicides") +
+  geom_text(nudge_y = 7, nudge_x = 0, size = 8) + 
+  theme_bw() +  
+  labs(title = "Meu grafico") +
+  
+  theme(legend.position = "none") +
+ coord_flip() 
+```
+
+```{r}
+library(kableExtra)
+kable(cld) %>%
+  kable_styling()
+```
+

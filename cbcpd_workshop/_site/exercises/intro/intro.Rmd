@@ -76,7 +76,7 @@ glimpse(max)
 Novamente, se os códigos acima tiver sendo executados, prossiga para plotar os dados!
 
 ```{r}
-plot <- ggplot(max, 
+grafico <- ggplot(max, 
                aes(x = year,
                    y = prop,  
                    group = name, 
@@ -86,7 +86,7 @@ plot <- ggplot(max,
 
 
 ```{r}
-plot
+grafico
 ```
 
 
@@ -103,6 +103,6 @@ help(ggsave)
 ```
 
 ```{r}
-ggsave("max_oliveira.pdf", plot) # mude o nome da figura!
+ggsave("max_oliveira.png", grafico) # mude o nome da figura!
 ```
 

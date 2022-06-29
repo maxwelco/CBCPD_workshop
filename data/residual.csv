@@ -1,0 +1,55 @@
+weed,year,herbicide,trt,rep,dat,control
+waterhemp,2014,SureStart,1,1,34,100
+waterhemp,2014,SureStart,1,2,34,100
+waterhemp,2014,SureStart,1,3,34,95
+waterhemp,2014,Lumaz EZ + Harness,2,1,34,50
+waterhemp,2014,Lumaz EZ + Harness,2,2,34,30
+waterhemp,2014,Lumaz EZ + Harness,2,3,34,70
+waterhemp,2014,Zidua_1,3,1,34,70
+waterhemp,2014,Zidua_1,3,2,34,100
+waterhemp,2014,Zidua_1,3,3,34,80
+waterhemp,2014,Zidua_2,4,1,34,85
+waterhemp,2014,Zidua_2,4,2,34,85
+waterhemp,2014,Zidua_2,4,3,34,75
+waterhemp,2014,Zidua_3,5,1,34,30
+waterhemp,2014,Zidua_3,5,2,34,30
+waterhemp,2014,Zidua_3,5,3,34,20
+waterhemp,2014,Anthem ATZ,6,1,34,40
+waterhemp,2014,Anthem ATZ,6,2,34,80
+waterhemp,2014,Anthem ATZ,6,3,34,50
+waterhemp,2014,Zidua + Sharpen + AAtrex,7,1,34,60
+waterhemp,2014,Zidua + Sharpen + AAtrex,7,2,34,80
+waterhemp,2014,Zidua + Sharpen + AAtrex,7,3,34,80
+waterhemp,2014,Verdict + Outlook,8,1,34,80
+waterhemp,2014,Verdict + Outlook,8,2,34,40
+waterhemp,2014,Verdict + Outlook,8,3,34,85
+waterhemp,2014,Corvus + AAtrex,9,1,34,65
+waterhemp,2014,Corvus + AAtrex,9,2,34,50
+waterhemp,2014,Corvus + AAtrex,9,3,34,80
+waterhemp,2013,SureStart,1,1,31,99
+waterhemp,2013,SureStart,1,2,31,99
+waterhemp,2013,SureStart,1,3,31,99
+waterhemp,2013,Lumaz EZ + Harness,2,1,31,90
+waterhemp,2013,Lumaz EZ + Harness,2,2,31,98
+waterhemp,2013,Lumaz EZ + Harness,2,3,31,95
+waterhemp,2013,Zidua_1,3,1,31,99
+waterhemp,2013,Zidua_1,3,2,31,99
+waterhemp,2013,Zidua_1,3,3,31,99
+waterhemp,2013,Zidua_2,4,1,31,98
+waterhemp,2013,Zidua_2,4,2,31,99
+waterhemp,2013,Zidua_2,4,3,31,92
+waterhemp,2013,Zidua_3,5,1,31,75
+waterhemp,2013,Zidua_3,5,2,31,95
+waterhemp,2013,Zidua_3,5,3,31,85
+waterhemp,2013,Anthem ATZ,6,1,31,95
+waterhemp,2013,Anthem ATZ,6,2,31,95
+waterhemp,2013,Anthem ATZ,6,3,31,99
+waterhemp,2013,Zidua + Sharpen + AAtrex,7,1,31,99
+waterhemp,2013,Zidua + Sharpen + AAtrex,7,2,31,85
+waterhemp,2013,Zidua + Sharpen + AAtrex,7,3,31,99
+waterhemp,2013,Verdict + Outlook,8,1,31,97
+waterhemp,2013,Verdict + Outlook,8,2,31,98
+waterhemp,2013,Verdict + Outlook,8,3,31,99
+waterhemp,2013,Corvus + AAtrex,9,1,31,95
+waterhemp,2013,Corvus + AAtrex,9,2,31,98
+waterhemp,2013,Corvus + AAtrex,9,3,31,98

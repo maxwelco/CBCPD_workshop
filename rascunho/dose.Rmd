@@ -1,0 +1,161 @@
+---
+title: "dose"
+author: "Maxwel Coura Oliveira"
+date: "4/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+options(scipen=TRUE)
+```
+
+
+```{r}
+library(RCurl)
+# Baixando via GitHub
+df_path <- url("https://raw.githubusercontent.com/maxwelco/workshop-esalq/main/data/dose_resposta.csv")
+
+# Lendo via read_csv
+dose <- read_csv(df_path)
+
+dose
+```
+
+
+```{r}
+ggplot(dose, aes(x = rate, y = control, color = biotype)) + 
+  geom_point() 
+```
+
+```{r}
+ggplot(dose, aes(x = factor(rate), y = control, color = biotype)) + 
+  geom_boxplot()
+```
+
+
+
+```{r}
+library(drc)
+
+model <- drm(control ~ # variável resposta
+               rate, # variável explanatória
+             biotype, # fatores
+             fct = l3(fixed = c(NA, 100, NA), 
+                      names = c("incli", "superior", "ponto inflec")), # curva usada (existem várias)
+             data = dose) # onde estão os dados
+```
+
+```{r}
+library(drc)
+
+model1 <- drm(control ~ # variável resposta
+               rate, # variável explanatória
+             fct = l3(fixed = c(NA, 100, NA), 
+                      names = c("incli", "superior", "ponto inflec")), # curva usada (existem várias)
+             data = dose) # onde estão os dados
+```
+
+
+```{r}
+plot(model)
+```
+
+
+```{r}
+anova(model, model1)
+```
+
+
+
+
+```{r}
+plot(model)
+summary(model)
+```
+
+
+```{r warning = FALSE}
+mselect(model, list(LL.3(), LL.5(), W1.3(), W1.4(), W2.4(), l3()))
+```
+
+
+```{r}
+plot(model, col = c(1,2))
+```
+
+
+
+
+
+
+
+```{r}
+summary(model)
+```
+
+
+```{r}
+broom.mixed::tidy(model)
+```
+
+
+```{r}
+help(ED)
+```
+
+```{r}
+modelFit(model)
+```
+
+
+```{r}
+plot(model)
+```
+
+
+```{r}
+ED(model, c(10, 50, 90), type = "relave",
+   interval = "delta")
+```
+
+
+
+```{r}
+#options(scipen = 99)
+EDcomp(model, c(50, 50), type = "absolute") %>% 
+  as_tibble()
+```
+
+```{r warning = FALSE}
+plot(model, col = c(2, 1), lty = c(1, 2), pch = c(2, 1),
+     type = "confidence")
+```
+
+
+
+```{r}
+# gerar uma novo dataset
+nd <- expand.grid(rate=exp(seq(log(0.5), log(1680), length=1680)),
+                       biotype = c("S", "R"))
+
+# predict the model
+pm <- predict(model, newdata=nd, interval="confidence")
+
+# predict intervalo de confiança
+nd$p <- pm[,1] 
+nd$pmin <- pm[,2] 
+nd$pmax <- pm[,3] 
+
+# ajustando o 0
+dose$rate0 <- dose$rate
+dose$rate0[dose$rate==0] <- 0.5
+```
+
+
+
