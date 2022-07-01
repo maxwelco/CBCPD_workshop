@@ -1,6 +1,6 @@
 ---
 title: "Introdução ao R/Rstudio"
-subtitle: "Breve introdução sobre o programa R/Rstudio"
+subtitle: "Uma breve introdução sobre o programa R/Rstudio"
 author: 
   - "Maxwel Coura Oliveira, PhD"
 date: '`r Sys.Date()`'
@@ -76,7 +76,7 @@ class: middle, center
 ---
 
 
-## R e Rstudio
+## R e RStudio
 
 <br><br>
 

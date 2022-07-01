@@ -14,13 +14,14 @@ description: |
 
 ## Diversidade e Inclusão
 
-**Propósito:** Os participantes de todas as origens e perspectivas diversas serão bem servidos por este mini-curso, que as necessidades de aprendizagem dos participantes sejam abordadas dentro e fora do mini-curso e que a diversidade que os alunos trazem para este workshop seja vista como benefício. É minha intenção apresentar materiais e atividades que respeitem a diversidade: identidade de gênero, sexualidade, deficiência, idade, status socioeconômico, etnia, raça, nacionalidade, religião e cultura. Deixe-me saber maneiras de melhorar o mini-curso.
+**Propósito:** Os participantes de todas as origens e perspectivas diversas serão bem servidos por este mini-curso, que as necessidades de aprendizagem dos participantes sejam abordadas dentro e fora do mini-curso e que a diversidade que os alunos trazem para este workshop seja vista como benefício. É minha intenção apresentar materiais e atividades que respeitem a diversidade: identidade de gênero, sexualidade, deficiência, idade, status socioeconômico, etnia, raça, nacionalidade, religião e cultura. Fique a vontade para me dizer maneiras de melhorar o mini-curso.
 
 
 ## Como obter ajuda
 
 - Durante o conteúdo do mini-curso e fórum de discussão do curso.
-    - Publique no documento de perguntas e respostas (P&R) do google em vez de enviar mensagens diretas.
+    - Durante o curso presencial faça perguntas diretas.
+    - Também publique no documento de perguntas e respostas (P&R) do google.
      - Use a formatação adequada: ao fazer perguntas que envolvam código, certifique-se de usar a formatação de código semelhante ao usado no R.
      - Em aulas online, o participante pode usar o compartilhamento de tela para tirar dúvidas.
      

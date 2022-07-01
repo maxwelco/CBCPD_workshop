@@ -1,13 +1,13 @@
 ---
 title: "CBCPD"
 description: |
-  Este workshop tem como objetivo apresentar a vocês as análises de modelos mistos com ANOVA e dose resposta no R. Especificamente, estamos interessados em analisar experimentos aplicados na ciência da planta daninha.
+  Este mini-curso tem como objetivo apresentar a vocês as análises de modelos mistos com ANOVA e dose resposta no R. Especificamente, estamos interessados em analisar experimentos aplicados na ciência da planta daninha.
 site: distill::distill_website
 listing: posts
 ---
 
 
-# Workshop
+# Mini-Curso
 
 <center>
 <img src="images/flyer_oliveira.png" width="800px"/>
@@ -25,14 +25,20 @@ Dia 25/06/2021 das 13 às 17h.
 | 13:30 às 13:45 	| Introdução  	  |
 | 13:45 às 15:15 	| Dose resposta	  |
 | 15:15 às 15:30 	| Intervalo	      |
-| 15:30 às 17:00 	| Anova           |
+| 15:30 às 17:00 	| ANOVA           |
 
 
 
 
 # Atividade preliminar
 
-- Leia a apostila de **Introdução** e faça o exercício de **Introdução** antes do inicio do curso.
+- Leia a apostila de **Introdução** e faça o exercício de **Introdução** antes do inicio do curso. 
+
+- No dia do mini-curso você deverá trazer o seu laptop com o R e RStudio instalado e sem nenhum problema para executar os códigos do exercīcio de **Introdução**.
+
+- Se familirize com o as outras atividades deste mini-curso. Quem quiser, leia a Apostila e Slides e faça os Exercícios da **ANOVA** e **Dose Resposta**. 
+
+- Nosso tempo será muito limitado durante o mini-curso.
 
 
 # Open Weed Science

@@ -261,11 +261,6 @@ $$Y = c + \frac{d - c} {1 + exp[b(log x - log e)]}$$
 - Vá em exercícios --> Dose resposta e faça do número **1 ao 3**.
 
 
-<center>
-<img src="https://media.giphy.com/media/p4sRGwWBaWGAfBJNos/giphy.gif" width="400px"/>
-</center>
-
-
 
 ```{r echo =FALSE}
 countdown(minutes = 3, seconds = 00)
@@ -306,7 +301,7 @@ model <- drm(control ~ # variável resposta
              data = dose) # onde estão os dados
 ```
 
-```{r echo=FALSE, fig.align='center', out.height=500, out.width=500}
+```{r echo=FALSE, fig.align='center', fig.height=5, fig.width=6}
 plot(model, legendPos = c(3, 95))
 ```
 ]
@@ -350,7 +345,7 @@ dose$rate0[dose$rate==0] <- 0.5
 ```
 
 
-```{r echo = FALSE, out.height=500, out.width=500}
+```{r echo = FALSE, fig.align='center'}
 ggplot(dose, aes(x = rate, y = control, 
                  color = biotype,
                  fill = biotype)) + 

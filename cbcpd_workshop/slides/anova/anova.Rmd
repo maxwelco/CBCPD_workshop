@@ -204,6 +204,8 @@ knitr::include_graphics("https://englelab.gatech.edu/useRguide/images/dplyr_logo
 
 
 > "O gráfico simples trouxe mais informações à mente do analista de dados do que qualquer outro dispositivo." John Tukey
+
+
 ```{r echo = FALSE, out.width=500, fig.align='center'}
 knitr::include_graphics("https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif")
 ```
@@ -216,9 +218,7 @@ knitr::include_graphics("https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.
 
 - Vá em exercícios --> ANOVA e faça do número **1**.
 
-```{r echo=FALSE, out.width=400}
-knitr::include_graphics("https://media.giphy.com/media/12XDYvMJNcmLgQ/giphy.gif")
-```
+
 
 
 ```{r echo =FALSE}
@@ -325,9 +325,6 @@ library(glmmTMB)
 
 - Vá em exercícios --> ANOVA e faça do número **2, 3 e 4**.
 
-```{r echo=FALSE, out.width=400}
-knitr::include_graphics("https://media.giphy.com/media/yoJC2K6rCzwNY2EngA/giphy.gif")
-```
 
 
 ```{r echo =FALSE}
@@ -372,9 +369,7 @@ library(multcomp)
 
 - Vá em exercícios --> ANOVA e faça do número **5, 6, 7 e 8**.
 
-```{r echo=FALSE, out.width=400}
-knitr::include_graphics("https://media.giphy.com/media/3oKIP8C4lSWT47ZBHW/giphy.gif")
-```
+
 
 
 ```{r echo =FALSE}
@@ -415,9 +410,7 @@ knitr::include_graphics("https://media.giphy.com/media/g9wbFB61YEh1u/giphy.gif")
 
 - Vá em exercícios --> ANOVA e faça do número **9 e 10**.
 
-```{r echo=FALSE, out.width=400}
-knitr::include_graphics("https://media.giphy.com/media/oGO1MPNUVbbk4/giphy.gif")
-```
+
 
 
 ```{r echo =FALSE}

@@ -31,7 +31,7 @@ library(drc)
 options(scipen=TRUE)
 ```
 
-Execute o bloco de código abaixo para importar os dados.
+Execute o bloco de código abaixo para importar os dados via GitHub.
 
 ```r
 # Baixando via GitHub
@@ -150,3 +150,30 @@ ggplot(dose, aes(x = rate, y = ___________,
   scale_x_continuous(breaks=c(0, 1, 5, 12, 26, 53, 105, 
                               210, 420, 840, 1680))
 ```
+
+
+# Para fazer em casa
+
+Leia os comandos abaixo.
+
+```r
+# Baixando via GitHub
+df_path <- url("https://raw.githubusercontent.com/maxwelco/workshop-esalq/main/data/dose_resposta.csv")
+
+# Lendo via read_csv
+dose <- read_csv(df_path)
+dose |> 
+  filter(rate %in% c(0.0, 52.5, 105.0, 210.000, 420.000)) -> dose2
+```
+
+Verifique que o nome dos dados agora é `dose2`. Veja que filtrei (`filter`) para apenas cinco doses de herbicidas. Faça o mesmo exercício, mas com a base de dados `dose2`.
+
+Após a análise estatística responda a seguinte pergunta: A quantidade de doses impacta os resultados? 
+
+
+
+
+
+
+
+

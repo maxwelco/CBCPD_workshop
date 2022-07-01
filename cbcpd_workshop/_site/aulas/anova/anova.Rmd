@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 # Importando os pacotes
 
-Vamos importar alguns pacotes até o final dessa aula, porém vamos trabalhar na base tidyverse. O tidyverse é um pacote que contém vários outros pacotes que auxiliam na manipulação de dados e construção de gráficos. Um exemplo que vamos usar é o pipe (%>%) do pacote magrittr, que faz parte do tidyverse. Assim como o pacote `dplyr` (que está dentro do `tidyverse`) para manipulação de dados.
+Vamos importar alguns pacotes até o final dessa aula, porém vamos trabalhar na base tidyverse. O tidyverse é um pacote que contém vários outros pacotes que auxiliam na manipulação de dados e construção de gráficos. Um exemplo que vamos usar é o pipe (%>%) do pacote magrittr (ou pode-se usar o |> da base R), que faz parte do tidyverse. Assim como o pacote `dplyr` (que está dentro do `tidyverse`) para manipulação de dados.
 
 ```{r}
 library(tidyverse)

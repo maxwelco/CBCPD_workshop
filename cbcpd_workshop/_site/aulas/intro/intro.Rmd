@@ -126,6 +126,7 @@ install.packages("drc")
 install.packages("car")
 install.packages("glmmTMB")
 install.packages("emmeans")
+install.packages("multcomp")
 ```
 
 No **Rstudio**, execute os códigos clicando em Run.
@@ -134,7 +135,11 @@ Todos esses pacotes devem ser executados sem problema no **R** e/ou **Rstudio**,
 
 # Leitura complementar 
 
-- Wickham & Grolemund [R for Data Science](https://r4ds.had.co.nz/index.html)
+- Apostila - [Curso R](https://livro.curso-r.com/index.html#sobre)
+
+- Vanderlei Júlio Debastiani - [Introdução ao R](https://vanderleidebastiani.github.io/tutoriais/Introducao_ao_R.html#introdu%C3%A7%C3%A3o)
+
+- Wickham & Grolemund - [R for Data Science](https://r4ds.had.co.nz/index.html)
 
 
 
