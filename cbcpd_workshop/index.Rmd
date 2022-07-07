@@ -40,6 +40,8 @@ Dia 25/06/2021 das 13 às 17h.
 
 - Nosso tempo será muito limitado durante o mini-curso.
 
+- Fique a vontade para enviar um email para **maxwelco@gmail.com** caso tenha algum problema com o R/RStudio antes do mini-curso. 
+
 
 # Open Weed Science
 

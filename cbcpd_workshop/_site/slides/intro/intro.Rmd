@@ -101,6 +101,10 @@ class: middle, center
 
 .pull-left[
 - Biblioteca de pacotes (packages)
+
+- Existem muitos pacotes
+
+.footnote[Imagem ilustrativa de alguns pacotes]
 ]
 
 
