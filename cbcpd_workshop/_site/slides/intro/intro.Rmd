@@ -1,5 +1,5 @@
 ---
-title: "Introdução ao R/Rstudio"
+title: "Introdução ao R/RStudio"
 subtitle: "Uma breve introdução sobre o programa R/Rstudio"
 author: 
   - "Maxwel Coura Oliveira, PhD"
