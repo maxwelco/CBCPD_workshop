@@ -42,6 +42,8 @@ Dia 25/06/2021 das 13 às 17h.
 
 - Fique a vontade para enviar um email para **maxwelco@gmail.com** caso tenha algum problema com o R/RStudio antes do mini-curso. 
 
+- Quer aprender mais sobre R? Veja essa [apostila do curso R](https://livro.curso-r.com/index.html#sobre)
+
 
 # Open Weed Science
 
