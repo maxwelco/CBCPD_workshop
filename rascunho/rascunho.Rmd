@@ -6,9 +6,52 @@ output: html_document
 ---
 
 
-```{r}
+
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
+
+
+```{r}
+library(RCurl)
+# Baixando via GitHub
+df_path <- url("https://raw.githubusercontent.com/maxwelco/workshop-esalq/main/data/residual.csv")
+
+# Lendo via read_csv
+residual <- read_csv(df_path)
+
+residual
+```
+
+
+```{r}
+residual1 <- residual |> 
+  mutate(control_prop = control / 100)
+
+residual1
+```
+
+
+```{r}
+residual2 <- residual1 %>% 
+  mutate(control_prop = case_when(
+    control_prop == 1.00 ~ 0.999,
+    control_prop == 0.00 ~ 0.001,
+    TRUE                 ~ control_prop
+  ))
+```
+
+```{r}
+residual3 <- residual2 %>%
+  mutate_if(is_character, as_factor) %>% # passando para fator
+  mutate_at(c("year", "trt", "rep"), as_factor) # passando para fator
+
+residual3
+```
+
+
+
+
 
 
 ```{r}
@@ -51,14 +94,81 @@ residual3 <- residual2 %>%
 residual3
 ```
 
-
 ```{r}
-ggplot(residual3, aes(x = herbicide, 
-                      y = control_prop, color = year)) + 
+ggplot(residual3, aes(x = herbicide, y = control_prop, color = year)) + 
   geom_point() +
   coord_flip() +
   ylim(0, 1)
 ```
+
+
+
+```{r}
+ggplot(residual3, aes(x = herbicide, y = control_prop, color = year)) + 
+    geom_point() +
+  geom_boxplot() + # veja que adicionei esse código para gerar o box plot
+  coord_flip() +
+  ylim(0, 1)
+```
+
+```{r}
+library(lme4)
+library(glmmTMB)
+```
+
+
+```{r}
+library(glmmTMB)
+modelo <- glmmTMB(control_prop ~ # variável resposta
+                    herbicide + # variável fixa
+                    (1|rep/year), # efeitos randomizados
+                  family = beta_family(link = "logit"),
+                  REML = FALSE,
+                  data = residual3)
+```
+
+```{r}
+glmmTMB:::Anova.glmmTMB(modelo)
+```
+```{r}
+library(emmeans)
+```
+
+
+```{r}
+emmip(modelo, ~ herbicide, type="response") + coord_flip()
+```
+
+```{r}
+lsmeans <- emmeans(modelo, # modelo
+                   ~ herbicide, # efeito fixo
+                   cont="pairwise", # tipo de comparação
+                   type="response", # transforma os dados de volta ao original
+                   alpha=0.05) # nivel 
+```
+
+```{r}
+plot(lsmeans, # lsmeans
+     ~ herbicide, # efeito fixo
+     comparisons = TRUE, # quero comparar
+     type="response", # transforma os dados de volta ao original
+     alpha=0.05, # nivel
+     adjust="none")
+```
+
+```{r}
+library(multcomp)
+cld1 <- cld(lsmeans$emmeans, # o uso do $emmeans filtra o resultado de lsmeans para as medias
+           alpha=0.05, # nivel
+           Letters=letters, # usar letras
+           adjust="none", # sem ajuste de medias
+           reversed = TRUE) # a ---> z
+cld1
+```
+
+
+
+
 
 
 ```{r}
@@ -78,7 +188,7 @@ leveneTest(control_prop ~ year, data = residual3)
 
 ```{r}
 library(glmmTMB)
-modelo <- glmmTMB(control_prop ~ # variável resposta
+modelo1 <- glmmTMB(control_prop ~ # variável resposta
                     herbicide * year + # variável fixa
                     (1|rep), # efeitos randomizados
                   family = beta_family(link = "logit"),
@@ -103,24 +213,29 @@ library(emmeans)
 ```
 
 ```{r}
-emmip(modelo, ~ herbicide | year, type="response") #+ coord_flip()
+emmip(modelo, ~ herbicide * year, type="response") + coord_flip()
 ```
 
 
+
+
+
+
+
 ```{r}
-lsmeans <- emmeans(modelo, # modelo
-                   ~  herbicide * year, # efeito fixo
+lsmeans1 <- emmeans(modelo, # modelo
+                   ~  herbicide | year, # efeito fixo
                    cont="pairwise", # tipo de comparação
                    type="response", # transforma os dados de volta ao original
                    alpha=0.05) # nivel 
 
-lsmeans
+lsmeans1
 ```
 
 
 
 ```{r}
-plot(lsmeans, # lsmeans
+plot(lsmeans1, # lsmeans
      ~ herbicide * year, # efeito fixo
      comparisons = TRUE, # quero comparar
      type="response", # transforma os dados de volta ao original
@@ -129,6 +244,13 @@ plot(lsmeans, # lsmeans
 ```
 
 
-
+```{r}
+cld2 <- cld(lsmeans1$emmeans, # o uso do $emmeans filtra o resultado de lsmeans para as medias
+           alpha=0.05, # nivel
+           Letters=letters, # usar letras
+           adjust="none", # sem ajuste de medias
+           reversed = TRUE) # a ---> z
+cld2
+```
 
 
